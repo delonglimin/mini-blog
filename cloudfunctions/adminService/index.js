@@ -11,6 +11,7 @@ cloud.init()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
+  debugger
   //admin服务都要验证一下权限
   if (event.action !== 'checkAuthor' && event.action !== 'getLabelList' && event.action !== 'getClassifyList') {
     let result = await checkAuthor(event)
@@ -74,6 +75,7 @@ exports.main = async (event, context) => {
  * @param {} event 
  */
 async function checkAuthor(event) {
+  debugger
   let authors = process.env.author
   if (authors.indexOf(event.userInfo.openId) != -1) {
     //if (event.userInfo.openId == process.env.author) {

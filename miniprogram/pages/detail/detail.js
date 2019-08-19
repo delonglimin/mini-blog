@@ -140,6 +140,10 @@ Page({
     that.setData({
       post: postDetail.result
     })
+    console.log(postDetail)
+    wx.setNavigationBarTitle({
+      title: postDetail.result.title
+    })
     wx.hideLoading()
   },
   /**
@@ -532,10 +536,11 @@ Page({
         color: '#929292',
       }
     ];
-
     let imageUrl = that.data.post.defaultImageUrl
     imageUrl = imageUrl.replace('http://', 'https://')
     let qrCode = await api.getReportQrCodeUrl(that.data.post.qrCode);
+    debugger
+
     let qrCodeUrl = qrCode.fileList[0].tempFileURL
     if (qrCodeUrl == "") {
       let addReult = await api.addPostQrCode(that.data.post._id, that.data.post.timestamp)
